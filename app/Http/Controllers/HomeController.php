@@ -43,7 +43,7 @@ class HomeController extends Controller
         // $pdf = PDF::loadView('payroll.salaryview', $data);
         // return $pdf->download('text.pdf');
         // selecting PDF view
-        $pdf = PDF::loadView('payroll.salaryview');
+        // $pdf = PDF::loadView('payroll.salaryview');
         // download pdf file
         return $pdf->download('pdfview.pdf');
     }

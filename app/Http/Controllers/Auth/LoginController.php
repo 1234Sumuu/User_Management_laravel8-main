@@ -84,7 +84,7 @@ class LoginController extends Controller
             return redirect()->intended('home');
         }
         else{
-            Toastr::error('failed access!, Wrong User! :)','Error');
+            Toastr::error('failed access!, Wrong User!','Contact Admin');
             return redirect('login');
         }
 
@@ -110,7 +110,7 @@ class LoginController extends Controller
         ];
         DB::table('activity_logs')->insert($activityLog);
         Auth::logout();
-        Toastr::success('Logout successfully :)','Success');
+        Toastr::success('Logout successfully!','Success');
         return redirect('login');
     }
 

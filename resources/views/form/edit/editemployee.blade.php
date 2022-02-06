@@ -121,7 +121,6 @@
                                                         <th class="text-center">Write</th>
                                                         <th class="text-center">Create</th>
                                                         <th class="text-center">Delete</th>
-                                                        <th class="text-center">Import</th>
                                                         <th class="text-center">Export</th>
                                                     </tr>
                                                 </thead>
@@ -150,10 +149,6 @@
                                                         <td class="text-center">
                                                             <input type="checkbox" class="delete{{ ++$key }}" id="delete" name="delete[]" value="Y" {{ $items->delete =="Y" ? 'checked' : ''}}>
                                                             <input type="checkbox" class="delete{{ ++$key1 }}" id="delete" name="delete[]" value="N" {{ $items->delete =="N" ? 'checked' : ''}}>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <input type="checkbox" class="import{{ ++$key }}" id="import" name="import[]" value="Y" {{ $items->import =="Y" ? 'checked' : ''}}>
-                                                            <input type="checkbox" class="import{{ ++$key1 }}" id="import" name="import[]" value="N" {{ $items->import =="N" ? 'checked' : ''}}>
                                                         </td>
                                                         <td class="text-center">
                                                             <input type="checkbox" class="export{{ ++$key }}" id="export" name="export[]" value="Y" {{ $items->export =="Y" ? 'checked' : ''}}>
