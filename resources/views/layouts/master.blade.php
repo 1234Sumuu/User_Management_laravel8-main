@@ -8,7 +8,7 @@
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="SoengSouy Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Dashboard - HRMS</title>
+	<title>Dashboard - User Management</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/img/favicon.png') }}">
 	<!-- Bootstrap CSS -->
@@ -35,14 +35,14 @@
 </head>
 
 <body>
-	<style>    
+	<style>
 		.invalid-feedback{
 			font-size: 14px;
 		}
 	</style>
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
-		
+
 		<!-- Header -->
 		{{-- @yield('nav') --}}
 		<div class="header">
@@ -73,15 +73,7 @@
 					</div>
 				</li>
 				<!-- /Search -->
-				<!-- Flag -->
-				<li class="nav-item dropdown has-arrow flag-nav">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"> <img src="{{ URL::to('assets/img/flags/us.png') }}" alt="" height="20"> <span>English</span> </a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a href="javascript:void(0);" class="dropdown-item"> <img src="{{ URL::to('assets/img/flags/us.png') }}" alt="" height="16"> English </a>
-						<a href="javascript:void(0);" class="dropdown-item"> <img src="{{ URL::to('assets/img/flags/kh.png') }}" alt="" height="16"> Khmer </a>
-					</div>
-				</li>
-				<!-- /Flag -->
+
 				<!-- Notifications -->
 				<li class="nav-item dropdown">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span class="badge badge-pill">3</span> </a>
@@ -91,64 +83,7 @@
 							<ul class="notification-list">
 								<li class="notification-message">
 									<a href="activities.html">
-										<div class="media"> <span class="avatar">
-													<img alt="" src="{{ URL::to('assets/img/profiles/avatar-02.jpg') }}">
-												</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
-												<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="activities.html">
-										<div class="media"> <span class="avatar">
-													<img alt="" src="{{ URL::to('assets/img/profiles/avatar-03.jpg') }}">
-												</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
-												<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="activities.html">
-										<div class="media"> <span class="avatar">
-													<img alt="" src="{{ URL::to('assets/img/profiles/avatar-06.jpg') }}">
-												</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
-												<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="activities.html">
-										<div class="media"> <span class="avatar">
-													<img alt="" src="{{ URL::to('assets/img/profiles/avatar-17.jpg') }}">
-												</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
-												<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="activities.html">
-										<div class="media"> <span class="avatar">
-													<img alt="" src="{{ URL::to('assets/img/profiles/avatar-13.jpg') }}">
-												</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
-												<p class="noti-time"><span class="notification-time">2 days ago</span></p>
-											</div>
-										</div>
-									</a>
-								</li>
+
 							</ul>
 						</div>
 						<div class="topnav-dropdown-footer"> <a href="activities.html">View all Notifications</a> </div>
@@ -165,60 +100,7 @@
 								<li class="notification-message">
 									<a href="chat.html">
 										<div class="list-item">
-											<div class="list-left"> <span class="avatar">
-														<img alt="" src="{{ URL::to('assets/img/profiles/avatar-09.jpg') }}">
-													</span> </div>
-											<div class="list-body"> <span class="message-author">Richard Miles </span> <span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div> <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> </div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left"> <span class="avatar">
-														<img alt="" src="{{ URL::to('assets/img/profiles/avatar-02.jpg') }}">
-													</span> </div>
-											<div class="list-body"> <span class="message-author">John Doe</span> <span class="message-time">6 Mar</span>
-												<div class="clearfix"></div> <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> </div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left"> <span class="avatar">
-														<img alt="" src="{{ URL::to('assets/img/profiles/avatar-03.jpg') }}">
-													</span> </div>
-											<div class="list-body"> <span class="message-author"> Tarah Shropshire </span> <span class="message-time">5 Mar</span>
-												<div class="clearfix"></div> <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> </div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left"> <span class="avatar">
-														<img alt="" src="{{ URL::to('assets/img/profiles/avatar-05.jpg') }}">
-													</span> </div>
-											<div class="list-body"> <span class="message-author">Mike Litorus</span> <span class="message-time">3 Mar</span>
-												<div class="clearfix"></div> <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> </div>
-										</div>
-									</a>
-								</li>
-								<li class="notification-message">
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">
-													<img alt="" src="{{ URL::to('assets/img/profiles/avatar-08.jpg') }}">
-												</span>
-											</div>
-											<div class="list-body"> <span class="message-author"> Catherine Manseau </span> <span class="message-time">27 Feb</span>
-											<div class="clearfix"></div> <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> </div>
-										</div>
-									</a>
-								</li>
+
 							</ul>
 						</div>
 						<div class="topnav-dropdown-footer"> <a href="chat.html">View all Messages</a> </div>
@@ -234,7 +116,7 @@
 					</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="{{ route('profile_user') }}">My Profile</a>
-						<a class="dropdown-item" href="{{ route('company/settings/page') }}">Settings</a>
+						{{-- <a class="dropdown-item" href="{{ route('company/settings/page') }}">Settings</a> --}}
 						<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
 					</div>
 				</li>
@@ -246,7 +128,7 @@
 					<i class="fa fa-ellipsis-v"></i>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="profile.html">My Profile</a> 
+					<a class="dropdown-item" href="profile.html">My Profile</a>
 					<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
 				</div>
 			</div>
@@ -255,12 +137,41 @@
 		<!-- /Header -->
 		<!-- Sidebar -->
 		{{-- @yield('menu') --}}
-		<!-- /Sidebar -->
+		{{-- /Sidebar  --}}
 		<!-- Page Wrapper -->
 		@yield('content')
 		<!-- /Page Wrapper -->
 	</div>
 	<!-- /Main Wrapper -->
+
+     {{-- export Scripts  --}}
+    <script>
+        $(document).ready(function(){
+            $('#example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                        .addClass('compact')
+                        .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+            });
+        });
+
+    </script>
 
 	<!-- jQuery -->
 	<script src="{{ URL::to('assets/js/jquery-3.5.1.min.js') }}"></script>
@@ -282,10 +193,10 @@
 	<script src="{{ URL::to('assets/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/dataTables.bootstrap4.min.js') }}"></script>
 	<!-- Multiselect JS -->
-	<script src="{{ URL::to('assets/js/multiselect.min.js') }}"></script>		
+	<script src="{{ URL::to('assets/js/multiselect.min.js') }}"></script>
 	<!-- Custom JS -->
 	<script src="{{ URL::to('assets/js/app.js') }}"></script>
-	
+
 	@yield('script')
 </body>
 </html>

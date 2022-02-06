@@ -8,6 +8,7 @@ use DB;
 use App\Models\User;
 use App\Models\Employee;
 use App\Models\Form;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\ProfileInformation;
 use App\Rules\MatchOldPassword;
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ class UserManagementController extends Controller
         {
             return redirect()->route('home');
         }
-        
+
     }
     // search user
     public function searchUser(Request $request)
@@ -96,14 +97,14 @@ class UserManagementController extends Controller
                                 ->where('status','LIKE','%'.$request->status.'%')
                                 ->get();
             }
-           
+
             return view('usermanagement.user_control',compact('users','role_name','position','department','status_user','result'));
         }
         else
         {
             return redirect()->route('home');
         }
-    
+
     }
 
     // use activity log
@@ -121,12 +122,12 @@ class UserManagementController extends Controller
 
     // profile user
     public function profile()
-    {   
+    {
         $user = Auth::User();
         Session::put('user', $user);
         $user=Session::get('user');
         $profile = $user->rec_id;
-       
+
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('rec_id',$profile)->first();
 
@@ -144,9 +145,9 @@ class UserManagementController extends Controller
             }else{
                 $information = ProfileInformation::all();
                 return view('usermanagement.profile_user',compact('information','user'));
-            } 
+            }
         }
-       
+
     }
 
     // save profile information
@@ -178,7 +179,7 @@ class UserManagementController extends Controller
                     'avatar' => $image_name,
                 ];
                 User::where('rec_id',$request->rec_id)->update($update);
-            } 
+            }
 
             $information = ProfileInformation::updateOrCreate(['rec_id' => $request->rec_id]);
             $information->name         = $request->name;
@@ -195,7 +196,7 @@ class UserManagementController extends Controller
             $information->designation  = $request->designation;
             $information->reports_to   = $request->reports_to;
             $information->save();
-            
+
             DB::commit();
             Toastr::success('Profile Information successfully :)','Success');
             return redirect()->back();
@@ -205,7 +206,7 @@ class UserManagementController extends Controller
             return redirect()->back();
         }
     }
-   
+
     // save new user
     public function addNewUserSave(Request $request)
     {
@@ -226,7 +227,7 @@ class UserManagementController extends Controller
             $dt       = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
 
-            $image = time().'.'.$request->image->extension();  
+            $image = time().'.'.$request->image->extension();
             $request->image->move(public_path('assets/images'), $image);
 
             $user = new User;
@@ -250,7 +251,7 @@ class UserManagementController extends Controller
             return redirect()->back();
         }
     }
-    
+
     // update
     public function update(Request $request)
     {
@@ -278,14 +279,14 @@ class UserManagementController extends Controller
                 }
             }
             else{
-                
+
                 if($image != '')
                 {
                     $image_name = rand() . '.' . $image->getClientOriginalExtension();
                     $image->move(public_path('/assets/images/'), $image_name);
                 }
             }
-            
+
             $update = [
 
                 'rec_id'       => $rec_id,
@@ -360,7 +361,7 @@ class UserManagementController extends Controller
             DB::commit();
             Toastr::success('User deleted successfully :)','Success');
             return redirect()->route('userManagement');
-            
+
         }catch(\Exception $e){
             DB::rollback();
             Toastr::error('User deleted fail :)','Error');
@@ -373,7 +374,7 @@ class UserManagementController extends Controller
     {
         return view('settings.changepassword');
     }
-    
+
     // change password in db
     public function changePasswordDB(Request $request)
     {
@@ -388,13 +389,119 @@ class UserManagementController extends Controller
         Toastr::success('User change successfully :)','Success');
         return redirect()->intended('home');
     }
+
+
+
+
+
+    // Export CSV
+
+    public function exportCsv(Request $request)
+    {
+        $filters = Session::get('searchUser');
+
+        $users = User::where(function ($query) use ($filters) {
+
+        // search by name
+        if($request->name)
+        {
+            $result = User::where('name','LIKE','%'.$request->name.'%')->get();
+        }
+
+        // search by role name
+        if($request->role_name)
+        {
+            $result = User::where('role_name','LIKE','%'.$request->role_name.'%')->get();
+        }
+
+        // search by status
+        if($request->status)
+        {
+            $result = User::where('status','LIKE','%'.$request->status.'%')->get();
+        }
+
+        // search by name and role name
+        if($request->name && $request->role_name)
+        {
+            $result = User::where('name','LIKE','%'.$request->name.'%')
+                            ->where('role_name','LIKE','%'.$request->role_name.'%')
+                            ->get();
+        }
+
+        // search by role name and status
+        if($request->role_name && $request->status)
+        {
+            $result = User::where('role_name','LIKE','%'.$request->role_name.'%')
+                            ->where('status','LIKE','%'.$request->status.'%')
+                            ->get();
+        }
+
+        // search by name and status
+        if($request->name && $request->status)
+        {
+            $result = User::where('name','LIKE','%'.$request->name.'%')
+                            ->where('status','LIKE','%'.$request->status.'%')
+                            ->get();
+        }
+
+        // search by name and role name and status
+        if($request->name && $request->role_name && $request->status)
+        {
+            $result = User::where('name','LIKE','%'.$request->name.'%')
+                            ->where('role_name','LIKE','%'.$request->role_name.'%')
+                            ->where('status','LIKE','%'.$request->status.'%')
+                            ->get();
+        }
+
+        // return view('usermanagement.user_control',compact('users','role_name','position','department','status_user','result'));
+
+})->orderBy('created_at', 'desc')->get();
+
+        $fileName = 'user-list.csv';
+        $users = User::all();
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+
+        $columns = array('id', 'name', 'rec_id', 'email' , 'join_date', 'phone_number' ,'status', 'role_name', 'avatar', 'position', 'department', 'email_verified_at' ,'remember_token', 'updated_at');
+        $callback = function() use($users, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($users as $list) {
+                $row['name']  = $list->name;
+                $row['rec_id'] = $list->rec_id;
+                $row['email']    = (!empty($list->email)  && isset($this->cTypeArray[$list->email])) ? $this->cTypeArray[$list->email] : '';
+                $row['join_date'] = $list->join_date;
+                $row['phone_number']    = $list->phone_number;
+                $row['status']    = $list->status;
+                $row['role_name']    = $list->role_name;
+                $row['avatar']    = $list->avatar;
+                $row['position'] = $list->position;
+                $row['department'] = $list->department;
+                $row['email_verified_at'] = $list->email_verified_at;
+                $row['remember_token'] = $list->remember_token;
+                // $row['Created By']  = (!empty($list->created_by)  && isset($this->userArray[$list->created_by])) ? $this->userArray[$list->created_by] : '';
+                $row['Updated_at']  = $list->Updated_at;
+                // $row['status']  = ($list->status == 1) ? 'Active' : 'Inactive' ;
+                // : 'Disable'
+
+                fputcsv($file, array($row['name'], $row['rec_id'], $row['email'], $row['Phone_number'], $row['status'],  $row['role_name'], $row['position'], $row['department'], $row['modify_user'], $row['Created By'], $row['Created On']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+
+
+
 }
-
-
-
-
-
-
-
-
-

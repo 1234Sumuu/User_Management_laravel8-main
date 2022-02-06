@@ -2,17 +2,19 @@
 @section('content')
     <div class="main-wrapper">
         <div class="account-content">
-            {{-- <a href="{{ route('form/job/list') }}" class="btn btn-primary apply-btn">Apply Job</a> --}}
+            <h2>Welcome to User Managment System</h2>
             <div class="container">
-                <!-- Account Logo -->
-                
-                <!-- /Account Logo -->
+                {{-- logo --}}
+                <div class="account-logo">
+                    <a href="index.html"><img src="{{ URL::to('assets/img/logo2.png') }}" alt=""></a>
+                </div>
+                {{-- /logo --}}
                 <div class="account-box">
                     <div class="account-wrapper">
                         <h3 class="account-title">Register</h3>
-                        <p class="account-subtitle">Access to our dashboard</p>
-                        
-                        <!-- Account Form -->
+                        <p class="account-subtitle">Access to the dashboard</p>
+
+                        {{-- Register Form  --}}
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">

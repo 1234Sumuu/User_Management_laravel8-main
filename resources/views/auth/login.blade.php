@@ -2,18 +2,20 @@
 @section('content')
     <div class="main-wrapper">
         <div class="account-content">
-            {{-- <a href="{{ route('form/job/list') }}" class="btn btn-primary apply-btn">Apply Job</a> --}}
+            <h2>Welcome to User Managment System</h2>
             <div class="container">
-                <!-- Account Logo -->
-
                 {{-- message --}}
                 {!! Toastr::message() !!}
-                <!-- /Account Logo -->
+               {{-- logo --}}
+                <div class="account-logo">
+                    <a href="index.html"><img src="{{ URL::to('assets/img/logo2.png') }}" alt=""></a>
+                </div>
+                {{-- /logo --}}
                 <div class="account-box">
                     <div class="account-wrapper">
                         <h3 class="account-title">Login</h3>
-                        <p class="account-subtitle">Access to our dashboard</p>
-                        <!-- Account Form -->
+                        <p class="account-subtitle">Access to the dashboard</p>
+                         {{-- Account Form --}}
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">
@@ -57,7 +59,7 @@
                                 <p>New User? <a href="{{ route('register') }}">Register</a></p>
                             </div>
                         </form>
-                        <!-- /Account Form -->
+                         {{-- /Account Form --}}
                     </div>
                 </div>
             </div>

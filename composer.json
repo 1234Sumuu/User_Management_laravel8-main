@@ -14,7 +14,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "laraveldaily/laravel-invoices": "^2.2"
+        "laraveldaily/laravel-invoices": "^2.2",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
