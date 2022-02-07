@@ -22,7 +22,7 @@ class CreateModulePermissionsTable extends Migration
             $table->string('write')->nullable();
             $table->string('create')->nullable();
             $table->string('delete')->nullable();
-            $table->string('import')->nullable();
+            // $table->string('import')->nullable();
             $table->string('export')->nullable();
             $table->timestamps();
         });

@@ -54,7 +54,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
                     </div>
                 </div>
             </div>
@@ -83,20 +83,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <button type="sumit" class="btn btn-info btn-block"> Search </button>
-
-
-
+                        <button type="sumit" class="btn btn-success btn-block"> Search </button>
                     </div>
-
-                    <div class="col-sm-9 col-md-3">
-                        <a href="{{url('home')}}">
-                            <a href="{{url('exportCsv')}}" target="_blank" class="btn btn-primary me-1">Export CSV</a>
-                            {{-- <a href="{{route("")}}" target="_blank" class="btn btn-primary me-1">Export CSV</a> --}}
-                            <button class="btn btn-success" type="submit">Reset</button>
-                        </a>
-                    </div>
-
                 </div>
             </form>
             <!-- /Search Filter -->
@@ -109,7 +97,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    {{-- <th>User ID</th> --}}
+                                    <th>User ID</th>
                                     <th>Email</th>
                                     <th>Position</th>
                                     <th>Phone</th>
@@ -125,17 +113,13 @@
                                 <tr>
                                     <td>
                                         <span hidden class="image">{{ $user->avatar}}</span>
-                                         <h2 class="table-avatar">
-                                            <a href="{{ url('employee/profile/') }}" class="avatar"><img src="{{ URL::to('/assets/images/'. $user->avatar) }}" alt="{{ $user->avatar }}"></a>
-                                            <a href="{{ url('employee/profile/') }}" class="name">{{ $user->name }}</span></a>
-                                        </h2>
-                                        {{-- <h2 class="table-avatar">
+                                        <h2 class="table-avatar">
                                             <a href="{{ url('employee/profile/'.$user->rec_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/'. $user->avatar) }}" alt="{{ $user->avatar }}"></a>
                                             <a href="{{ url('employee/profile/'.$user->rec_id) }}" class="name">{{ $user->name }}</span></a>
-                                        </h2> --}}
+                                        </h2>
                                     </td>
                                     <td hidden class="ids">{{ $user->id }}</td>
-                                    {{-- <td class="id">{{ $user->rec_id }}</td> --}}
+                                    <td class="id">{{ $user->rec_id }}</td>
                                     <td class="email">{{ $user->email }}</td>
                                     <td class="position">{{ $user->position }}</td>
                                     <td class="phone_number">{{ $user->phone_number }}</td>
@@ -442,18 +426,23 @@
             $('#e_email').val(_this.find('.email').text());
             $('#e_phone_number').val(_this.find('.phone_number').text());
             $('#e_image').val(_this.find('.image').text());
+
             var name_role = (_this.find(".role_name").text());
             var _option = '<option selected value="' + name_role+ '">' + _this.find('.role_name').text() + '</option>'
             $( _option).appendTo("#e_role_name");
+
             var position = (_this.find(".position").text());
             var _option = '<option selected value="' +position+ '">' + _this.find('.position').text() + '</option>'
             $( _option).appendTo("#e_position");
+
             var department = (_this.find(".department").text());
             var _option = '<option selected value="' +department+ '">' + _this.find('.department').text() + '</option>'
             $( _option).appendTo("#e_department");
+
             var statuss = (_this.find(".statuss").text());
             var _option = '<option selected value="' +statuss+ '">' + _this.find('.statuss').text() + '</option>'
             $( _option).appendTo("#e_status");
+
         });
     </script>
     {{-- delete js --}}

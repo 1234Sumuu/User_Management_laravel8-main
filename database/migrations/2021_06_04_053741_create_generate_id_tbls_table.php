@@ -9,6 +9,7 @@ class CreateGenerateIdTblsTable extends Migration
     /**
      * Run the migrations.
      *
+     *  SET NEW.rec_id = CONCAT("KHM_", LPAD(LAST_INSERT_ID(), 10, "0"));
      * @return void
      */
     public function up()
@@ -17,7 +18,8 @@ class CreateGenerateIdTblsTable extends Migration
             CREATE TRIGGER id_store BEFORE INSERT ON users FOR EACH ROW
             BEGIN
                 INSERT INTO sequence_tbls VALUES (NULL);
-                SET NEW.rec_id = CONCAT("KHM_", LPAD(LAST_INSERT_ID(), 10, "0"));
+
+                SET NEW.rec_id = CONCAT("User-", LPAD(LAST_INSERT_ID(), 4, "0"));
             END
         ');
     }

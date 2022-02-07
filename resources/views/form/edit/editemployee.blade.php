@@ -17,11 +17,11 @@
                         </a>
                         <ul style="display: none;">
                             <li><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                            <li><a href="{{ route('em/dashboard') }}">Employee Dashboard</a></li>
+                            <li><a href="{{ route('em/dashboard') }}">User Dashboard</a></li>
                         </ul>
                     </li>
                     @if (Auth::user()->role_name=='Admin')
-                        <li class="menu-title"> <span>User Managment</span> </li>
+                        <li class="menu-title"> <span>Authentication</span> </li>
                         <li class="submenu">
                             <a href="#">
                                 <i class="la la-user-secret"></i> <span> User Controller</span> <span class="menu-arrow"></span>
@@ -33,6 +33,9 @@
                             </ul>
                         </li>
                     @endif
+                    <li class="menu-title">
+                        <span>Employees</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -149,6 +152,10 @@
                                                         <td class="text-center">
                                                             <input type="checkbox" class="delete{{ ++$key }}" id="delete" name="delete[]" value="Y" {{ $items->delete =="Y" ? 'checked' : ''}}>
                                                             <input type="checkbox" class="delete{{ ++$key1 }}" id="delete" name="delete[]" value="N" {{ $items->delete =="N" ? 'checked' : ''}}>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <input type="checkbox" class="import{{ ++$key }}" id="import" name="import[]" value="Y" {{ $items->import =="Y" ? 'checked' : ''}}>
+                                                            <input type="checkbox" class="import{{ ++$key1 }}" id="import" name="import[]" value="N" {{ $items->import =="N" ? 'checked' : ''}}>
                                                         </td>
                                                         <td class="text-center">
                                                             <input type="checkbox" class="export{{ ++$key }}" id="export" name="export[]" value="Y" {{ $items->export =="Y" ? 'checked' : ''}}>
